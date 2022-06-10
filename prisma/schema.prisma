@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Post_ratings {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+  PostId    Int?
+  UserId    Int?
+  Posts     Posts?   @relation(fields: [PostId], references: [id], map: "post_ratings_ibfk_1")
+  Users     Users?   @relation(fields: [UserId], references: [id], map: "post_ratings_ibfk_2")
+
+  @@index([PostId], map: "PostId")
+  @@index([UserId], map: "UserId")
+}
+
+model Posts {
+  id           Int            @id @default(autoincrement())
+  title        String         @db.VarChar(255)
+  description  String         @db.Text
+  image        String         @db.VarChar(255)
+  createdAt    DateTime       @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime       @default(now()) @db.Timestamp(0)
+  UserId       Int?
+  Users        Users?         @relation(fields: [UserId], references: [id], map: "posts_ibfk_1")
+  Post_ratings Post_ratings[]
+
+  @@index([UserId], map: "UserId")
+}
+
+model Users {
+  id                   Int            @id @default(autoincrement())
+  email                String         @unique
+  username             String         @unique
+  password             String         @db.VarChar(255)
+  first_name           String?        @db.VarChar(255)
+  last_name            String?        @db.VarChar(255)
+  city                 String?        @default("Somewhere") @db.VarChar(255)
+  country              String?        @default("United Kingdom") @db.VarChar(255)
+  image                String?        @default("http://placekitten.com/g/200/300") @db.VarChar(255)
+  resetPasswordToken   String?        @db.VarChar(255)
+  resetPasswordExpires DateTime?      @db.DateTime(0)
+  createdAt            DateTime       @default(now()) @db.Timestamp(0)
+  updatedAt            DateTime       @default(now()) @db.Timestamp(0)
+  Post_ratings         Post_ratings[]
+  Posts                Posts[]
+}
