@@ -13,8 +13,7 @@ const Layout: FC = ({ }) => {
 <Container fluid>
 
 </Container>
-  
-     
+
   )
 }
 
