@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { Button, Popover, Text } from "@nextui-org/react";
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,16 @@ const Home: NextPage = () => {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
+        <Popover>
+      <Popover.Trigger>
+        <Button auto flat>Open Popover</Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Text css={{ p: "$10" }}>This is the content of the popover.</Text>
+        <Button>Sign Up!</Button>
+      </Popover.Content>
+    </Popover>
+    
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
