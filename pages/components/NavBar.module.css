@@ -1,0 +1,8 @@
+.navbar {
+ 
+    /* overflow: hidden; */
+position: sticky;
+top:5;
+width: 100%;
+
+}

@@ -31,7 +31,7 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
 
     await auth(mode, { email, password, username });
     setIsLoading(false);
-    router.push("/hi");
+    router.push("/home");
   };
 
   const [visible, setVisible] = React.useState(false);
@@ -84,7 +84,7 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
 
   return (
     <div>
-      <Button auto color="warning" shadow onClick={handler}>
+      <Button auto  shadow onClick={handler}>
         {mode}
       </Button>
       <Modal
@@ -97,10 +97,8 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
         <form onSubmit={handleSubmit}>
           <Modal.Header>
             <Text id="modal-title" size={18}>
-              Welcome to
-              <Text b size={18}>
-                NextUI
-              </Text>
+              Join or Sign Back In!
+             
             </Text>
           </Modal.Header>
           <Modal.Body>

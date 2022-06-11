@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
-        "nextui"
-    ]
+        "nextui",
+        "TRAX"
+    ],
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true
 }
