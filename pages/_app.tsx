@@ -4,6 +4,8 @@ import { SSRProvider } from "react-bootstrap";
 
 import AppShell from "./components/AppShell";
 
+
+
 function MyApp({ Component, pageProps }) {
   return (
     <SSRProvider>

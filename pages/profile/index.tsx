@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
+import type { NextPage, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "./Profile.module.css";
-
 import {
   StreamApp,
   StatusUpdateForm,
@@ -15,10 +14,28 @@ import {
   CommentList,
   CommentItem,
   InfiniteScrollPaginator,
-} from 'react-activity-feed';
-import Navbar from "./components/NavBar";
+} from "react-activity-feed";
+// import Navbar from "./components/NavBar";
+import "react-activity-feed/dist/index.css";
+import prisma from "../../lib/prisma";
+import { useStream } from "../../lib/hooks";
 
-const Profile: NextPage = (props) => {
+require("dotenv");
+
+interface Props {}
+
+const apiKey = process.env.REACT_APP_STREAM_API_KEY as string;
+const appId = process.env.REACT_APP_STREAM_APP_ID as string;
+
+const Profile: NextPage = (data, props) => {
+  // const apiKey = process.env.REACT_APP_STREAM_API_KEY as string;
+  // const appId = process.env.REACT_APP_STREAM_APP_ID as string;
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWxleCJ9.c0Ie3jWvzLekIf_6Eymnh3-ii6CUqk6xGjJ7JnPHqM4";
+  console.log("token on client", data);
+
+console.log('server side props?', props)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,11 +45,72 @@ const Profile: NextPage = (props) => {
       </Head>
 
       <main className={styles.main}>
-   
-      
+        <h2></h2>
+        {/* <StreamApp apiKey={apiKey} appId={appId} token={token}>
+          <div className="wrapper box">
+            <h3>React Activity Feed</h3>
+            <NotificationDropdown right />
+          </div>
+          <StatusUpdateForm
+            emojiI18n={{
+              search: "Type here to search...",
+              categories: { recent: "Recent Emojis" },
+            }}
+          />
+
+          <FlatFeed
+            notify
+            feedGroup="user"
+            options={{
+              limit: 6,
+              withOwnChildren: true,
+              withRecentReactions: true,
+            }}
+            Paginator={InfiniteScrollPaginator}
+            Activity={({ activity, feedGroup, userId }) => (
+              <Activity
+                activity={activity}
+                feedGroup={feedGroup}
+                userId={userId}
+                Footer={() => (
+                  <>
+                    <ActivityFooter
+                      activity={activity}
+                      feedGroup={feedGroup}
+                      userId={userId}
+                    />
+                    <CommentField activity={activity} />
+                    <CommentList
+                      activityId={activity.id}
+                      CommentItem={({ comment }) => (
+                        <div className="wrapper">
+                          <CommentItem comment={comment} />
+                          <LikeButton reaction={comment} />
+                        </div>
+                      )}
+                    />
+                  </>
+                )}
+              />
+            )}
+          />
+        </StreamApp> */}
       </main>
     </div>
   );
 };
+
+export async function getServerSideProps() {
+
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3000/api/me`);
+  const data = await res.json();
+ 
+  
+  // Pass data to the page via props
+  return { props: { data} };
+  
+
+}
 
 export default Profile;

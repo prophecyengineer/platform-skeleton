@@ -18,6 +18,8 @@ import { useSWRConfig } from "swr";
 import NextImage from "next/image";
 import { auth } from "../../lib/mutations";
 
+
+
 const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -28,8 +30,7 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
-    await auth(mode, { email, password, username });
+      await auth(mode, { email, password, username });
     setIsLoading(false);
     router.push("/home");
   };

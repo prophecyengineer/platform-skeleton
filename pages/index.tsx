@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-
+import Navbar from "./components/NavBar";
+require('dotenv').config()
 const Home: NextPage = (props) => {
   return (
     <div className={styles.container}>
@@ -13,8 +14,9 @@ const Home: NextPage = (props) => {
       </Head>
 
       <main className={styles.main}>
+        <Navbar/>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome todsaf
         </h1>
 
         <p className={styles.description}>
@@ -68,5 +70,8 @@ const Home: NextPage = (props) => {
     </div>
   );
 };
+
+Home.authPage = true;
+
 
 export default Home;
