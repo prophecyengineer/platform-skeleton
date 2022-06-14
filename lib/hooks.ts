@@ -5,10 +5,10 @@ import fetcher from './fetcher'
 
 
 export const useStream = () => {
-  const { data, error } = useSWR('/me', fetcher)
+  const { data, error } = useSWR('/user-token', fetcher)
 
 return {
-    users: data,
+    user: data,
     isLoading: !data && !error,
     isError: error,
   }

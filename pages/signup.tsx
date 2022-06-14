@@ -1,6 +1,9 @@
-import AuthForm from "./authForm";
+import AuthForm from "./components/authForm";
 
-const SignUp = () => {
+//public signup page
+
+
+const SignUp = (props) => {
   return (
       <AuthForm mode="signup" />
   );

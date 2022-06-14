@@ -34,6 +34,14 @@ model Posts {
   @@index([UserId], map: "UserId")
 }
 
+model Tags {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique @db.VarChar(255)
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @db.Timestamp(0)
+}
+
 model Users {
   id                   Int            @id @default(autoincrement())
   email                String         @unique

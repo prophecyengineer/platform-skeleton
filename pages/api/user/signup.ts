@@ -6,8 +6,7 @@ import jwt from "jsonwebtoken";
 // store memory in browser session
 import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../lib/prisma";
-import store from "../../lib/makestream";
+import prisma from "../../../lib/prisma";
 
 // this is a serverless function (a function executed by some event)
 // function will start up and then shut down when the event is triggered
@@ -20,7 +19,7 @@ import store from "../../lib/makestream";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
   const { username, email, password } = req.body;
-
+ 
   let user;
   console.log({ username, email, password });
   try {
@@ -37,8 +36,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  
-
   // realised this did not contain username
   const token = jwt.sign(
     {
@@ -47,9 +44,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       id: user.id,
       time: Date.now(),
     },
-    "hello",
+    'hello',
     { expiresIn: "8h" }
   );
+
+  // const userName = jwt.sign(
+  //   {
+  //     username: user.username,
+  //   },
+  //   "hello",
+  //   { expiresIn: "8h" }
+  // );
 
   res.setHeader("Set-Cookie", [
     cookie.serialize("AUDIT_ACCESS_TOKEN", token, {
@@ -59,6 +64,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
     }),
+    // cookie.serialize("USERNAME", userName, {
+    //   httpOnly: true,
+    //   maxAge: 8 * 60 * 60,
+    //   path: "/",
+    //   sameSite: "lax",
+    //   secure: process.env.NODE_ENV === "production",
+    // }),
   ]);
 
   res.json(user);

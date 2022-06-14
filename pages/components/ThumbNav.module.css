@@ -1,8 +1,9 @@
 .navbar {
  
       /* overflow: hidden; */
-  position: sticky;
-  bottom: 10px !important;
-  width: 50%;
+  /* position: sticky;
+  bottom: 30px !important; */
+  margin-bottom: 30px;
+  width: 100%;
 
 }

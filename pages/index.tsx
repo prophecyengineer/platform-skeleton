@@ -16,7 +16,7 @@ const Home: NextPage = (props) => {
       <main className={styles.main}>
         <Navbar/>
         <h1 className={styles.title}>
-          Welcome todsaf
+          Welcome Lander
         </h1>
 
         <p className={styles.description}>

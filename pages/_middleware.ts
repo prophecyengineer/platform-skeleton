@@ -6,7 +6,6 @@ import type { NextRequest } from "next/server";
 
 //protected pages
 const signedinPages = [
-  "http://localhost:3000/",
   "http://localhost:3000/home",
   "http://localhost:3000/profile",
 ];
@@ -19,7 +18,7 @@ export default function middleware(req) {
 
     // if no token, redirect to signin
     if (!token) {
-      return NextResponse.redirect("http://localhost:3000/signin");
+      return NextResponse.redirect("http://localhost:3000/signup");
     }
   }
 }

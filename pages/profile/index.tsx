@@ -19,6 +19,8 @@ import {
 import "react-activity-feed/dist/index.css";
 import prisma from "../../lib/prisma";
 import { useStream } from "../../lib/hooks";
+import { useEffect } from "react";
+import JsonData from "/api/user-token";
 
 require("dotenv");
 
@@ -27,14 +29,33 @@ interface Props {}
 const apiKey = process.env.REACT_APP_STREAM_API_KEY as string;
 const appId = process.env.REACT_APP_STREAM_APP_ID as string;
 
-const Profile: NextPage = (data, props) => {
+
+
+
+const Profile: NextPage = (data ) => {
+
   // const apiKey = process.env.REACT_APP_STREAM_API_KEY as string;
   // const appId = process.env.REACT_APP_STREAM_APP_ID as string;
   // const token =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWxleCJ9.c0Ie3jWvzLekIf_6Eymnh3-ii6CUqk6xGjJ7JnPHqM4";
-  console.log("token on client", data);
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibmFubiJ9.Htkbm-hff3zenFC3Q2QAUrGXhnqC9dQSDkcL0-MnXH4";
 
-console.log('server side props?', props)
+  // console.log('appId here', appId, token, apiKey)
+
+  //demo
+  //   const apiKey = 'sesb46h7zb6p';
+  // const appId = '66001';
+  // const token =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYmF0bWFuIn0.8aYd7O_fx-1YMx28DXG1n274o4pa3SjHnRM8AIHLqkE';
+
+  // const streamToken = useStream();
+  // console.log("token for suser", {  token: streamToken?.data?.appToken });
+
+  // console.log('token for user',{user: streamToken?.user?.appToken });
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic3VzaGkifQ.rxndOEUbt4qOdGEzjWBC65ZB0xwJKhMcgEos0R4UN9I";
+
+  // const token = streamToken?.users?.appToken;
 
   return (
     <div className={styles.container}>
@@ -45,8 +66,8 @@ console.log('server side props?', props)
       </Head>
 
       <main className={styles.main}>
-        <h2></h2>
-        {/* <StreamApp apiKey={apiKey} appId={appId} token={token}>
+        <h2>Your personal feed </h2>
+        <StreamApp apiKey={apiKey} appId={appId} token={token}>
           <div className="wrapper box">
             <h3>React Activity Feed</h3>
             <NotificationDropdown right />
@@ -57,7 +78,6 @@ console.log('server side props?', props)
               categories: { recent: "Recent Emojis" },
             }}
           />
-
           <FlatFeed
             notify
             feedGroup="user"
@@ -94,23 +114,10 @@ console.log('server side props?', props)
               />
             )}
           />
-        </StreamApp> */}
+        </StreamApp>
       </main>
     </div>
   );
 };
-
-export async function getServerSideProps() {
-
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/me`);
-  const data = await res.json();
- 
-  
-  // Pass data to the page via props
-  return { props: { data} };
-  
-
-}
 
 export default Profile;

@@ -11,14 +11,13 @@ import {
   Checkbox,
   useInput,
 } from "@nextui-org/react";
+
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import React from "react";
 import { useSWRConfig } from "swr";
 import NextImage from "next/image";
 import { auth } from "../../lib/mutations";
-
-
 
 const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
   const [email, setEmail] = useState("");
@@ -30,16 +29,9 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-      await auth(mode, { email, password, username });
+    await auth(mode, { email, password, username });
     setIsLoading(false);
     router.push("/home");
-  };
-
-  const [visible, setVisible] = React.useState(false);
-  const handler = () => setVisible(true);
-  const closeHandler = () => {
-    setVisible(false);
-    console.log("closed");
   };
 
   const Password = ({ ...props }) => {
@@ -80,43 +72,35 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
     );
   };
 
-
-
-
   return (
-    <div>
-      <Button auto  shadow onClick={handler}>
-        {mode}
-      </Button>
-      <Modal
-        closeButton
-        blur
-        aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
-      >
+ 
+    
+    <Container fluid responsive>
+      <Spacer/>
+      <Card>
         <form onSubmit={handleSubmit}>
-          <Modal.Header>
-            <Text id="modal-title" size={18}>
-              Join or Sign Back In!
-             
-            </Text>
-          </Modal.Header>
-          <Modal.Body>
+          <Card.Header>
+          <Text size={18}>
+            Join or Sign Back In!
+          </Text>
+          </Card.Header>
+          <Card.Divider />
+
+          <Card.Body>
             <Input
-              clearable
+           
               bordered
               fullWidth
               color="primary"
               size="lg"
               label="Username"
-
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
               // contentLeft={<Mail fill="currentColor" />}
             />
+            <Spacer/>
             <Input
-              clearable
+             
               bordered
               label="Email"
               fullWidth
@@ -133,9 +117,9 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
                 />
               }
             />
+            <Spacer/>
             <Input.Password
-                          label="Password"
-
+              label="Password"
               bordered
               fullWidth
               color="primary"
@@ -151,24 +135,22 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
                 />
               }
             />
-            <Row justify="space-between">
-              <Checkbox>
-                <Text size={14}>Remember me</Text>
-              </Checkbox>
-              <Text size={14}>Forgot password?</Text>
-            </Row>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button auto flat color="error" onClick={closeHandler}>
-              Close
-            </Button>
-            <Button type="submit" auto onClick={closeHandler}>
+           
+           </Card.Body>
+          <Card.Divider/>
+          <Card.Footer>
+          
+            <Button type="submit" auto >
               {mode}
             </Button>
-          </Modal.Footer>
+          </Card.Footer>
         </form>
-      </Modal>
-    </div>
+      </Card>
+      <Spacer/> 
+      
+    
+
+    </Container>
   );
 };
 
