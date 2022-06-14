@@ -1,14 +1,15 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { SSRProvider } from "react-bootstrap";
-
+// import { SSRProvider } from "react-bootstrap";
+import {SessionProvider} from "next-auth/react"
 import AppShell from "./components/AppShell";
 
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ session, Component, pageProps }) {
   return (
-    <SSRProvider>
+    <SessionProvider session={session}>
+    {/* <SSRProvider> */}
       {Component.authPage ? (
         <Component {...pageProps} />
       ) : (
@@ -16,7 +17,8 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </AppShell>
       )}
-    </SSRProvider>
+    {/* </SSRProvider> */}
+    </SessionProvider>
   );
 }
 

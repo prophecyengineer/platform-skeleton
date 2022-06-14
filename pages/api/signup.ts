@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 // store memory in browser session
 import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prisma";
+import prisma from "../../lib/prisma";
 
 // this is a serverless function (a function executed by some event)
 // function will start up and then shut down when the event is triggered

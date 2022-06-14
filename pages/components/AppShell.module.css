@@ -1,6 +1,19 @@
 .container {
-/*   
-    width: 100% !important;
-    height: 100% !important; */
-    justify-items: center;
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 100vh;
+  position: sticky;
+}
+
+.innercontainer {
+  height: 90%;
+}
+
+.thumbnav {
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  overflow: hidden;
 }

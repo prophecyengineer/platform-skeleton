@@ -67,7 +67,7 @@ const Profile: NextPage = (data ) => {
 
       <main className={styles.main}>
         <h2>Your personal feed </h2>
-        <StreamApp apiKey={apiKey} appId={appId} token={token}>
+        {/* <StreamApp apiKey={apiKey} appId={appId} token={token}>
           <div className="wrapper box">
             <h3>React Activity Feed</h3>
             <NotificationDropdown right />
@@ -114,7 +114,7 @@ const Profile: NextPage = (data ) => {
               />
             )}
           />
-        </StreamApp>
+        </StreamApp> */}
       </main>
     </div>
   );

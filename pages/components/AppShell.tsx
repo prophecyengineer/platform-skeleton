@@ -1,24 +1,59 @@
-import {
-  Container,
-} from "@nextui-org/react";
+import { Container, Card, Button, Grid } from "@nextui-org/react";
 import { ReactFragment, ReactPortal } from "react";
-import Navbar from "./NavBar";
-import ThumbNav from "./ThumbNav";
-
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./AppShell.module.css";
-type ReactNode =
-  | ReactFragment
-  | ReactPortal
-  | boolean
-  | null
-  | undefined;
+
+type ReactNode = ReactFragment | ReactPortal | boolean | null | undefined;
 
 const AppShell: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Container fluid className={styles.container}>
-      <Navbar />
-      {children}
-      <ThumbNav />
+      <Container className={styles.innercontainer}>{children}</Container>
+      <Card className={styles.thumbnav}>
+        <Button.Group size="xl">
+          <Button>
+            <Link href="/home">
+              <Image
+                width="40px"
+                height="40px"
+                alt="icon"
+                src="https://img.icons8.com/glyph-neue/344/home.png"
+              />
+            </Link>
+          </Button>
+          <Button>
+            <Link href="/explore">
+              <Image
+                width="40px"
+                height="40px"
+                alt="icon"
+                src="https://img.icons8.com/glyph-neue/344/europe.png"
+              />
+            </Link>
+          </Button>
+          <Button>
+            <Link href="/profile">
+              <Image
+                width="40px"
+                height="40px"
+                alt="icon"
+                src="https://img.icons8.com/glyph-neue/344/user-location.png"
+              />
+            </Link>
+          </Button>
+          <Button>
+            <Link href="/">
+              <Image
+                width="40px"
+                height="40px"
+                alt="icon"
+                src="https://img.icons8.com/glyph-neue/344/settings.png"
+              />
+            </Link>
+          </Button>
+        </Button.Group>
+      </Card>
     </Container>
   );
 };
