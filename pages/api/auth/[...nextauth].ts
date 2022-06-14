@@ -31,7 +31,7 @@ const options = {
             id: "credentials",
             name: "credentials",
             credentials: {},
-            async authorize(credentials : any) {
+            async authorize(credentials) {
                 try
                 {
                     const user = await prisma.users.findFirst({

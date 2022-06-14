@@ -3,11 +3,13 @@ import { ReactFragment, ReactPortal } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./AppShell.module.css";
+import Wrapper from "../components/Wrapper";
 
 type ReactNode = ReactFragment | ReactPortal | boolean | null | undefined;
 
 const AppShell: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
+    <Wrapper>
     <Container fluid className={styles.container}>
       <Container className={styles.innercontainer}>{children}</Container>
       <Card className={styles.thumbnav}>
@@ -55,6 +57,7 @@ const AppShell: React.FC<{ children: ReactNode }> = ({ children }) => {
         </Button.Group>
       </Card>
     </Container>
+    </Wrapper>
   );
 };
 

@@ -6,9 +6,12 @@ import AppShell from "./components/AppShell";
 
 
 
-function MyApp({ session, Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
+  console.log("Got Session: ", pageProps.session);
+
   return (
-    <SessionProvider session={session}>
+    <SessionProvider options={{clientMaxAge: 0}} session={pageProps.session}>
+      
     {/* <SSRProvider> */}
       {Component.authPage ? (
         <Component {...pageProps} />

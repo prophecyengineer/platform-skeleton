@@ -16,7 +16,7 @@ const Explore: NextPage = (props) => {
         </Head>
 
         <main className={styles.main}>
-          <h1 className={styles.title}> Home  </h1>
+          <h1 className={styles.title}> Explore </h1>
 
           <p className={styles.description}>
             hello there 
