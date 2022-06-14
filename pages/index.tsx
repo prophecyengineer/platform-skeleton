@@ -44,12 +44,10 @@ const Home: NextPage = (props) => {
 
   return (
     <div className={styles.container}>
-      <Head>
-      
-      </Head>
+      <Head></Head>
 
       <main className={styles.main}>
-        <Card className={styles.navbar}>
+        {/* <Card className={styles.navbar}>
           <Grid.Container gap={1}>
             <Grid>
               <Link href="/signin">
@@ -66,7 +64,7 @@ const Home: NextPage = (props) => {
               </Link>
             </Grid>
           </Grid.Container>
-        </Card>
+        </Card> */}
 
         <h1 className={styles.title}>Welcome Lander</h1>
 

@@ -1,3 +1,9 @@
+
+.header {
+  position:sticky;
+  top: 0;
+}
+
 .container {
   background-color: aliceblue;
   border-radius: 20px;
@@ -7,13 +13,12 @@
   position: sticky;
 }
 
-.innercontainer {
-  height: 90%;
-}
+
 
 .thumbnav {
   align-items: center;
   justify-content: center;
+  position:sticky;
   bottom: 0;
   overflow: hidden;
 }
