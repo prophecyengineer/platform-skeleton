@@ -3,7 +3,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import {signIn} from "next-auth/react";
-
+import {
+  Text,
+  Container,
+  Card,
+  Button,
+  Grid,
+  Input,
+  Spacer,
+} from "@nextui-org/react";
 const axios = require('axios').default;
 
 const Register = (props) => {
@@ -64,7 +72,7 @@ const Register = (props) => {
         </label>
         <label>
           Email:{" "}
-          <input
+          <Input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
